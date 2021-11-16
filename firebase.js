@@ -30,3 +30,4 @@ const auth = getAuth(app);
 
 export { app };
 export { auth };
+export {firebaseConfig};

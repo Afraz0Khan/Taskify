@@ -70,6 +70,32 @@ const styles = StyleSheet.create({
       color: 'blue',
       fontSize: 17,
     },
+
+    signout_button: {
+      borderColor: 'blue',
+      borderWidth: 1,
+      marginRight: 20,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: 'white',
+      width: 75,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+      
+    },
+
+    plus_image:{
+      resizeMode: 'contain',
+      width: 50,
+      height: 50,
+    },
+
+    create_schedule_wrap:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 150
+    }
   });
 
 export default styles
