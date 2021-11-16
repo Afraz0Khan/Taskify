@@ -1,5 +1,4 @@
-import react from "react";
-import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, TextInput } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 
 
 const Home = () => {
@@ -11,3 +10,5 @@ const Home = () => {
         </SafeAreaView>
     )
 }
+
+export default Home;

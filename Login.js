@@ -11,6 +11,8 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const auth = getAuth(app);
   
     const navigation = useNavigation();
 
@@ -26,9 +28,6 @@ const Login = () => {
     [])
     
 
-
-
-    const auth = getAuth(app);
 
     const handleSignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
