@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     create_schedule_wrap:{
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 150
+      marginTop: 80
     },
 
     assign_data_input:{
@@ -118,18 +118,38 @@ const styles = StyleSheet.create({
     done_button: {
       borderColor: 'blue',
       borderWidth: 1,
-      marginRight: 20,
       padding: 10,
       borderRadius: 10,
       backgroundColor: 'blue',
       width: 75,
       alignItems: 'center',
       justifyContent: 'center',
-      alignSelf: 'flex-end',
+      marginTop: 50,
     },
 
     done_text:{
       color: 'white',
+    },
+
+    cancel_button:{
+      borderColor: 'red',
+      borderWidth: 1,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: 'white',
+      width: 75,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginLeft: 157,
+      marginTop: 30,
+    },
+
+    cancel_text:{
+      color: 'red',
+    },
+
+    button_container:{
+      flexDirection: 'row',
     }
 
   });

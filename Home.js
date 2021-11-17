@@ -1,12 +1,12 @@
 import { Text, SafeAreaView, Button, TouchableOpacity, Image, View, TextInput } from 'react-native';
 import React, {useState} from 'react';
-import { auth } from './firebase';
+import { auth } from './api';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
 import add from './api';
 import styles from './Styles';
 import GetAssignmentCard from './assignmentcard';
-import { render } from 'react-dom';
+import { add_task } from './api';
 
 
 
@@ -23,30 +23,20 @@ const Home = () => {
         })
     }
 
-    const [ifOpen, setIfOpen] = useState(false);
-
-    
-    
-    if (ifOpen) {
-        const comp = <GetAssignmentCard />
+    const handleAddTask = () => {
+        try {
+            navigation.navigate('GetAssignmentCard')
+        }
+        catch (error) {
+            alert(error.message)
+        }
+        
     }
-    else{
-        const comp = <View style = {styles.create_schedule_wrap}>
-
-        <Text style = {{marginBottom: 50, fontSize: 20}}>
-            Add assignments
-        </Text>
-
-        <TouchableOpacity>
-            <Image source = {require('./assets/plus.png')} 
-                style = {styles.plus_image}
-            />
-        </TouchableOpacity>
     
-        </View>
-    }
 
     
+    
+
     return (
         <SafeAreaView>
 
@@ -59,24 +49,26 @@ const Home = () => {
             </TouchableOpacity>
 
             <View style = {styles.create_schedule_wrap}>
+                
+                <Text style = {{marginBottom: 50, fontSize: 20}}>
+                    Add assignments
+                </Text>
 
-            <Text style = {{marginBottom: 50, fontSize: 20}}>
-                Add assignments
-            </Text>
+                <TouchableOpacity onPress = {handleAddTask}>
+                    <Image source = {require('./assets/plus.png')} 
+                        style = {styles.plus_image}
+                    />
+                </TouchableOpacity>
+                
 
-            <TouchableOpacity>
-                <Image source = {require('./assets/plus.png')} 
-                    style = {styles.plus_image}
-                />
-            </TouchableOpacity>
-        
             </View>
 
-            <GetAssignmentCard />
-            
+                
 
         </SafeAreaView>
     )
 }
+
+
 
 export default Home;

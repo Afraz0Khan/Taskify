@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, 
 import styles from './Styles';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from './firebase';
-import add from './api';
+import { auth } from './api';
+import add_user from './api';
 
 
 
@@ -42,7 +42,7 @@ const Login = () => {
                     createdAt: user.metadata.creationTime,
                 }
 
-                add('users', user.email, data)
+                add_user('users', user.email, data)
             }
         ).catch(
             error => {
