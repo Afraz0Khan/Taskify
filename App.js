@@ -1,9 +1,12 @@
 import React from 'react';
 import Login from './Login';
 import Home from './Home';
+import AssignmentCard from './assignmentcard';
 import styles from './Styles';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
 
 const stack = createNativeStackNavigator();
 

@@ -95,7 +95,35 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 150
-    }
+    },
+
+    assign_data_input:{
+      width: 250,
+      height: 50,
+      borderColor: 'gray',
+      borderWidth: 1,
+      margin: 10,
+      padding: 10,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 20
+    },
+
+    date_view: {
+      width: 125, 
+      backgroundColor: "white", 
+      marginTop: 20,
+      alignSelf: 'center',
+    },
+
+    time_view: {
+      width: 89, 
+      backgroundColor: "white", 
+      marginTop: 20,
+      alignSelf: 'center',
+    },
+
   });
 
 export default styles
