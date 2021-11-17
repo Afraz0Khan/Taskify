@@ -16,13 +16,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingBottom: 20
     },
-    
-    g_image: {
-      resizeMode: 'contain',
-      width: 25,
-      height: 25,
-      paddingRight: 20
-    },
   
     Main_view: {
       flexDirection: 'row'
@@ -111,18 +104,33 @@ const styles = StyleSheet.create({
     },
 
     date_view: {
-      width: 125, 
-      backgroundColor: "white", 
+      width: 130,  
       marginTop: 20,
       alignSelf: 'center',
     },
 
     time_view: {
       width: 89, 
-      backgroundColor: "white", 
       marginTop: 20,
       alignSelf: 'center',
     },
+
+    done_button: {
+      borderColor: 'blue',
+      borderWidth: 1,
+      marginRight: 20,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: 'blue',
+      width: 75,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+    },
+
+    done_text:{
+      color: 'white',
+    }
 
   });
 
