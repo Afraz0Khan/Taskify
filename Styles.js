@@ -152,6 +152,12 @@ const styles = StyleSheet.create({
 
     button_container:{
       flexDirection: 'row',
+    },
+
+    task_container:{
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
 
   });

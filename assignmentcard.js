@@ -26,14 +26,18 @@ const GetAssignmentCard = () => {
 
     const handleDone = () => {
 
+    
         var data = {
-            taskName: taskName,
-            dueDate: dueDate,
-            dueTime: dueTime,
+            
+            task_name: taskName,
+            due_date: dueDate,
+            due_time: dueTime,
             difficulty: difficulty,
             weightage: weightage,
-            timeNeeded: timeNeeded
+            time_needed: timeNeeded
+
         }
+
         add_task(data);
 
         setTaskName('');
@@ -183,13 +187,11 @@ const GetAssignmentCard = () => {
                         
                     
                     </View>
-                    
                 </View>
-
+                
             </SafeAreaView>
         )
     
-    return null
 }
 
 

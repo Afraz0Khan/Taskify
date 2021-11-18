@@ -1,13 +1,13 @@
 import { Text, SafeAreaView, Button, TouchableOpacity, Image, View, TextInput } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { auth } from './api';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
 import add from './api';
 import styles from './Styles';
 import GetAssignmentCard from './assignmentcard';
-import { add_task } from './api';
-
+import { add_task, get_data } from './api';
+import TaskList from './tasks';
 
 
 
@@ -33,8 +33,6 @@ const Home = () => {
         
     }
     
-
-    
     
 
     return (
@@ -59,7 +57,8 @@ const Home = () => {
                         style = {styles.plus_image}
                     />
                 </TouchableOpacity>
-                
+
+                <TaskList />
 
             </View>
 
