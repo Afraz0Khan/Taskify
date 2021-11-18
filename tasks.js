@@ -7,27 +7,27 @@ import { useNavigation } from '@react-navigation/core';
 
 
 
-const TaskList = () => {
-
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        const onAvailable = navigation.addListener('focus', ()=>{
-            get_data();
-        })
-    })
+const TaskCard = (props) => {
 
     return(
-        <SafeAreaView>
-            <View style = {styles.task_container}>
-                <Text>
-                    hey sexy
+        <View style = {styles.task_card}>
+
+            <View>
+                <Text style = {styles.task_head}>
+                    {props.task_name}
                 </Text>
             </View>
-        </SafeAreaView>
+            
+            <View style = {{flexDirection: 'row'}}>
+                <Text style = {styles.task_body}>
+                    {props.task_due_date}
+                </Text>
+            </View>
+
+        </View>
     )
 }
 
 
 
-export default TaskList;
+export default TaskCard;

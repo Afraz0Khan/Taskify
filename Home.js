@@ -7,7 +7,7 @@ import add from './api';
 import styles from './Styles';
 import GetAssignmentCard from './assignmentcard';
 import { add_task, get_data } from './api';
-import TaskList from './tasks';
+import TaskCard from './tasks';
 
 
 
@@ -33,6 +33,11 @@ const Home = () => {
         
     }
     
+    useEffect(() => {
+        const onAvailable = navigation.addListener('focus', ()=>{
+            get_data();
+        })
+    })
     
 
     return (
@@ -58,7 +63,7 @@ const Home = () => {
                     />
                 </TouchableOpacity>
 
-                <TaskList />
+                <TaskCard />
 
             </View>
 

@@ -158,6 +158,40 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       justifyContent: 'center',
       alignItems: 'center'
+    },
+
+    task_card: {
+      width: 320,
+      height: 120,
+      borderColor: 'gray',
+      borderWidth: 1,
+      margin: 10,
+      padding: 10,
+      borderRadius: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#061C39'
+    },
+
+    task_head : {
+      fontSize: 21,
+      fontWeight: 'bold',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      width: 280,
+      paddingTop: 10,
+      marginBottom: 25
+    },
+
+    task_body : {
+      fontSize: 17,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      flexDirection: 'row',
+      width: 280,
+      marginBottom: 8
     }
 
   });
