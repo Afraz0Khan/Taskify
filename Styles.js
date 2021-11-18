@@ -124,7 +124,9 @@ const styles = StyleSheet.create({
       width: 75,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 50,
+      marginTop: 70,
+      alignSelf: 'flex-end',
+      marginLeft: 170
     },
 
     done_text:{
@@ -140,8 +142,8 @@ const styles = StyleSheet.create({
       width: 75,
       alignItems: 'center',
       justifyContent: 'center',
-      marginLeft: 157,
-      marginTop: 30,
+      marginTop: 80,
+      alignSelf: 'flex-start',
     },
 
     cancel_text:{
