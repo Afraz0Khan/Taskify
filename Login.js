@@ -2,10 +2,13 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, TextInput } from 'react-native';
 import styles from './Styles';
-import { app } from './firebase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth';
 import { useNavigation } from '@react-navigation/core';
-import { auth } from './firebase';
+import { auth } from './api';
+import add_user from './api';
+
+
+
 
 const Login = () => {
 
@@ -34,6 +37,12 @@ const Login = () => {
                 const user = userCredentials.user;
                 console.log(user.email);
                 console.log(user.uid);
+                const data = {
+                    uid: user.uid,
+                    createdAt: user.metadata.creationTime,
+                }
+
+                add_user('users', user.email, data)
             }
         ).catch(
             error => {
@@ -55,7 +64,8 @@ const Login = () => {
                 console.log(user.email);
                 console.log(user.uid);
             }
-        ).catch(
+        )
+        .catch(
             error => {
                 if (error.code === 'auth/user-not-found') {
                     alert('Account not found.\n Please re-check your credentials.');
