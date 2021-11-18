@@ -13,10 +13,13 @@ import TaskCard from './tasks';
 
 const Home = () => {
 
+    const [data, setData] = useState([]);
+
     const navigation = useNavigation();
     const handleSignOut = () => {
         auth.signOut().then(() => {
             navigation.replace('Login')
+            setData([]);
         })
         .catch(error => {
             alert(error.message)
@@ -34,10 +37,37 @@ const Home = () => {
     }
     
     useEffect(() => {
-        const onAvailable = navigation.addListener('focus', ()=>{
-            get_data();
+        const onAvailable = navigation.addListener('focus', async ()=>{
+            const all_data = await get_data();
+            setData(all_data);
         })
+        console.log(data);
+        console.log(data.tasks);
     })
+
+    
+
+    const getTaskCards = () => {
+
+        let task_cards = [];
+
+        for (let index = 0; index < data.tasks.length; index++) {
+
+            task_cards.push(<TaskCard 
+
+                task_name={data.tasks[index]['task_name']} 
+
+                task_due_date={data.tasks[index]['due_time']} 
+
+            />)
+        
+        }
+
+        return task_cards;
+
+    }
+
+
     
 
     return (
@@ -63,7 +93,9 @@ const Home = () => {
                     />
                 </TouchableOpacity>
 
-                <TaskCard />
+                <View>
+                    {getTaskCards()}
+                </View>
 
             </View>
 

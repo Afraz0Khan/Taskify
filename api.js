@@ -66,7 +66,7 @@ async function get_data() {
 
         const reqDoc = doc(db, 'user-data', uid);
         const info = await getDoc(reqDoc);
-        console.log(info.data());
+        return info.data();
     }
     catch(error) {
         console.log(error.message);
