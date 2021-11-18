@@ -17,14 +17,6 @@ const firebaseConfig = {
   appId: "1:251655430744:web:2db1459419e04a2aa5602d"
 };
 
-// Initialize Firebase
-// let app;
-
-// app = firebase.initializeApp(firebaseConfig);
-
-// const auth = firebase.auth();
-
-// export { auth }
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -43,6 +35,8 @@ function add_user(collection, email, data) {
     
 }
 
+
+
 async function add_task(data) {
     try {
         const user = auth.currentUser;
@@ -60,13 +54,15 @@ async function add_task(data) {
 
 
 async function get_data() {
-    try{
+    try {
         const user = auth.currentUser;
         const uid = user.uid;
 
         const reqDoc = doc(db, 'user-data', uid);
-        const info = await getDoc(reqDoc);
-        return info.data();
+        const user_doc = await getDoc(reqDoc)
+
+        console.log(user_doc.data().tasks);
+        return user_doc.data().tasks;
     }
     catch(error) {
         console.log(error.message);

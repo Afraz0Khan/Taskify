@@ -1,5 +1,5 @@
 import { Text, SafeAreaView, Button, TouchableOpacity, Image, View, TextInput } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState,  } from 'react';
 import { auth } from './api';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
@@ -8,12 +8,15 @@ import styles from './Styles';
 import GetAssignmentCard from './assignmentcard';
 import { add_task, get_data } from './api';
 import TaskCard from './tasks';
+import { Component } from 'react';
 
 
 
 const Home = () => {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
 
     const navigation = useNavigation();
     const handleSignOut = () => {
@@ -37,71 +40,84 @@ const Home = () => {
     }
     
     useEffect(() => {
-        const onAvailable = navigation.addListener('focus', async ()=>{
-            const all_data = await get_data();
-            setData(all_data);
+        const onAvailable = navigation.addListener('focus', async () => { 
+            get_data()
+            .then(data => {
+                console.log(data);
+                setData(data);
+                setIsLoading(false);
+                }
+            )
         })
-        console.log(data);
-        console.log(data.tasks);
     })
 
-    
+
 
     const getTaskCards = () => {
-
         let task_cards = [];
 
-        for (let index = 0; index < data.tasks.length; index++) {
+        for (let index = 0; index < data.length; index++) {
 
-            task_cards.push(<TaskCard 
-
-                task_name={data.tasks[index]['task_name']} 
-
-                task_due_date={data.tasks[index]['due_time']} 
-
-            />)
-        
+            task_cards.push(
+                <TaskCard 
+                    task_name={data[index]['task_name']} 
+                    task_due_date={data[index]['due_time']['seconds']} 
+                />
+            )
         }
-
         return task_cards;
-
     }
 
+    if (isLoading){
 
-    
+        return (
+            <SafeAreaView>
 
-    return (
-        <SafeAreaView>
+                <TouchableOpacity onPress = {handleSignOut} style = {styles.signout_button}>
 
-            <TouchableOpacity onPress = {handleSignOut} style = {styles.signout_button}>
+                    <Text>
+                        Signout
+                    </Text>
 
-                <Text>
-                    Signout
-                </Text>
-
-            </TouchableOpacity>
-
-            <View style = {styles.create_schedule_wrap}>
-                
-                <Text style = {{marginBottom: 50, fontSize: 20}}>
-                    Add assignments
-                </Text>
-
-                <TouchableOpacity onPress = {handleAddTask}>
-                    <Image source = {require('./assets/plus.png')} 
-                        style = {styles.plus_image}
-                    />
                 </TouchableOpacity>
 
-                <View>
-                    {getTaskCards()}
+            </SafeAreaView>
+        )
+    }
+    return (
+    <SafeAreaView>
+
+                <TouchableOpacity onPress = {handleSignOut} style = {styles.signout_button}>
+
+                    <Text>
+                        Signout
+                    </Text>
+
+                </TouchableOpacity>
+
+                <View style = {styles.create_schedule_wrap}>
+                    
+                    <Text style = {{marginBottom: 50, fontSize: 20}}>
+                        Add assignments
+                    </Text>
+
+                    <TouchableOpacity onPress = {handleAddTask}>
+                        <Image source = {require('./assets/plus.png')} 
+                            style = {styles.plus_image}
+                        />
+                    </TouchableOpacity>
+
+                    <View>
+
+                        {getTaskCards()}
+                    
+                    </View>
+
                 </View>
 
-            </View>
+                    
 
-                
-
-        </SafeAreaView>
+            </SafeAreaView>
     )
 }
 

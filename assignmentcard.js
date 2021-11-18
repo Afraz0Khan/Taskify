@@ -69,17 +69,18 @@ const GetAssignmentCard = () => {
                     <TextInput 
                         style = {styles.assign_data_input}
                         placeholder = "Task Name"
+                        value = {taskName} 
                         onChangeText = {
                             (text) => {
                                 setTaskName(text);
                             }
                         }
-                        value = {taskName} 
                     /> 
 
                     <TextInput
                         style = {styles.assign_data_input}
                         placeholder = "Task difficulty (%)"
+                        value = {difficulty}
                         onChangeText = {
                             (percent) => {
                                 if ((percent < 100) && (percent > 0)) {
@@ -93,12 +94,12 @@ const GetAssignmentCard = () => {
                                 }
                             }
                         }
-                        value = {difficulty}
                     />
 
                     <TextInput
                         style = {styles.assign_data_input}
                         placeholder = "Task Weightage (%)"
+                        value = {weightage}
                         onChangeText = {
                             (weight) => {
                                 if ((weight < 100) && (weight > 0)) {
@@ -112,12 +113,12 @@ const GetAssignmentCard = () => {
                                 }
                             }
                         }
-                        value = {weightage}
                     />
 
                     <TextInput
                         style = {styles.assign_data_input}
                         placeholder = "Time needed (round to the nearest hour)"
+                        value = {timeNeeded}
                         onChangeText = {
                             (timeNeeded) => {
                                 if (((timeNeeded >= 1) && (timeNeeded < 24)) && !(timeNeeded.includes('.'))){
@@ -131,7 +132,6 @@ const GetAssignmentCard = () => {
                                 }
                             }
                         }
-                        value = {timeNeeded}
                     />
                     
                     
