@@ -5,9 +5,8 @@ import styles from './Styles';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth';
 import { useNavigation } from '@react-navigation/core';
 import { auth } from './api';
-import add_user from './api';
-
-
+import {doc, setDoc} from '@firebase/firestore';
+import { add_user, ready_user } from './api';
 
 
 const Login = () => {
@@ -33,16 +32,13 @@ const Login = () => {
     const handleSignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then(
-            userCredentials => {
+            (userCredentials) => {
                 const user = userCredentials.user;
-                console.log(user.email);
-                console.log(user.uid);
-                const data = {
+                const data =  {
                     uid: user.uid,
                     createdAt: user.metadata.creationTime,
                 }
-
-                add_user('users', user.email, data)
+                console.log(data)
             }
         ).catch(
             error => {
@@ -79,6 +75,7 @@ const Login = () => {
             }
         )
     }
+
 
     return (
     <SafeAreaView style={styles.container}>
