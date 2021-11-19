@@ -1,14 +1,15 @@
 import { Text, SafeAreaView, TouchableOpacity, Image, View, ScrollView, Dimensions } from 'react-native';
 import React, { useEffect, useState,  } from 'react';
-import { auth } from './api';
+import { add_user, auth, ready_user } from './api';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
 import add from './api';
 import styles from './Styles';
 import GetAssignmentCard from './assignmentcard';
-import { add_task, get_data } from './api';
+import { add_task, get_data, ready_schedule } from './api';
 import TaskCard from './tasks';
 import { Component } from 'react';
+import { useIsFocused } from '@react-navigation/core';
 
 
 
@@ -49,11 +50,19 @@ const Home = () => {
                     setIsLoading(false);
                     setHasTasks(true);
                     }
+                
+                else {
+                    ready_user(auth.currentUser.uid)
+                    ready_schedule(auth.currentUser.uid)
+                    }
                 }
             )
         })
     })
 
+    const handleSchedule = () => {
+        navigation.navigate('Schedule')
+    }
 
     
     const getTaskCards = () => {
@@ -64,7 +73,8 @@ const Home = () => {
             task_cards.push(
                 <TaskCard 
                     task_name={data[index]['task_name']} 
-                    task_due_date={data[index]['due_time']['seconds']} 
+                    task_due_date={data[index]['due_date']['seconds']} 
+                    task_time_needed={data[index]['time_needed']} 
                 />
             )
         }
@@ -75,28 +85,11 @@ const Home = () => {
     if (isLoading || !hasTasks) {
 
         return (
-            <SafeAreaView>
+            <SafeAreaView style = {{justifyContent: 'center', alignSelf: 'center', alignItems: 'center'}}>
 
-                <TouchableOpacity onPress = {handleSignOut} style = {styles.signout_button}>
-
-                    <Text>
-                        Signout
-                    </Text>
-
-                </TouchableOpacity>
-
-                <View style = {styles.create_schedule_wrap}>
-                    
-                    <Text style = {{marginBottom: 50, fontSize: 20}}>
-                        Add assignments
-                    </Text>
-
-                    <TouchableOpacity onPress = {handleAddTask}>
-                        <Image source = {require('./assets/plus.png')} 
-                            style = {styles.plus_image}
-                        />
-                    </TouchableOpacity>
-                </View>
+                <Text style = {{fontSize: 20}}>
+                    Loading your tasks ...
+                </Text>
 
             </SafeAreaView>
         )
@@ -104,6 +97,7 @@ const Home = () => {
     
     return (
     <SafeAreaView>
+            <View style = {{flexDirection: 'row'}}>
 
                 <TouchableOpacity onPress = {handleSignOut} style = {styles.signout_button}>
 
@@ -112,6 +106,16 @@ const Home = () => {
                     </Text>
 
                 </TouchableOpacity>
+
+                <TouchableOpacity onPress = {handleSchedule} style = {styles.create_schedule}>
+
+                    <Text style = {styles.schedule_text}>
+                        Smart Schedule
+                    </Text>
+
+                </TouchableOpacity>
+            
+            </View>
 
                 <View style = {styles.create_schedule_wrap}>
                     
