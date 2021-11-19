@@ -1,4 +1,4 @@
-function convert_to_algo_input(data) {
+async function convert_to_algo_input(data) {
     var finalData = {
         'Mon':{},
         'Tue':{},

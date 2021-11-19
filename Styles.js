@@ -209,6 +209,19 @@ const styles = StyleSheet.create({
 
     schedule_text:{
       color: 'white',
+    },
+
+    back_button:{
+      borderColor: 'blue',
+      borderWidth: 1,
+      marginLeft: 280,
+      marginTop: 10,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: 'white',
+      width: 80,
+      alignItems: 'center',
+      justifyContent: 'center',
     }
 
   });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, TextInput, ScrollView } from 'react-native';
 import styles from './Styles';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from '@firebase/auth';
 import { useNavigation } from '@react-navigation/core';
@@ -11,7 +11,7 @@ import { useIsFocused } from '@react-navigation/core';
 import { get_data, ready_schedule, get_schedule_data } from './api';
 import convert_to_algo_input from './imp_functions';
 import order from './algo';
-import scheduleCard from './scheduleCard';
+import ScheduleCard from './scheduleCard';
 
 
 
@@ -19,7 +19,7 @@ import scheduleCard from './scheduleCard';
 const efficientOrder = () => {
 
     const [isLoading, setIsLoading] = useState(true);
-    const [smartSchedule, setSmartSchedule] = useState([]);
+    const [smartSchedule, setSmartSchedule] = useState();
 
     const navigation = useNavigation();
 
@@ -31,31 +31,41 @@ const efficientOrder = () => {
     useEffect(() => {
 
         const onAvailable = navigation.addListener('focus', async () => {
+
             get_data()
             .then(data => {
-                const input = convert_to_algo_input(data);
-                const output = order(input);
-                setSmartSchedule(output);
-                setIsLoading(false);
-            })
-            } 
+                convert_to_algo_input(data)
+                .then((filtered_data) => {
+                    const output = order(filtered_data)
+                    setSmartSchedule(output);
+                    setIsLoading(false);
+                    }
+                )}
+            )} 
         )
     })
 
     const getScheduleCards = () => {
         let scheduleCards = [];
+        
         for (let i = 0; i < smartSchedule.length; i++) {
+            const element = smartSchedule[i];
+            console.log(element)
+
             scheduleCards.push(
-                <scheduleCard 
-                    do_day = {smartSchedule[i][0]}
-                    task_name={smartSchedule[i][1]}
+                <ScheduleCard 
+                    task_name = {element[1]}
+                    difficulty = {element[3]}
+                    due = {element[0]}
                 />
             )
+            
         }
+        return scheduleCards;
+  
     }
 
     if (isLoading){
-
         return(
             <SafeAreaView style={styles.container}>
                 <Text style = {{fontSize: 20}}>
@@ -65,8 +75,22 @@ const efficientOrder = () => {
         )
     }
     return (
-        <SafeAreaView style={styles.container}>
-            {getScheduleCards()}
+        <SafeAreaView>
+            <View style = {{flexDirection: 'row'}}>
+
+                <TouchableOpacity onPress = {handleBack} style = {styles.back_button}>
+
+                    <Text>
+                        Back
+                    </Text>
+
+                </TouchableOpacity>
+            </View>
+
+            <ScrollView>
+                {getScheduleCards()}
+            </ScrollView>
+            
         </SafeAreaView>
 
     )

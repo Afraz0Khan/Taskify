@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/core';
 
 
 
-const scheduleCard = (props) => {
+const ScheduleCard = (props) => {
 
     return(
         <View style = {styles.task_card}>
@@ -23,9 +23,15 @@ const scheduleCard = (props) => {
 
             <View style = {{flexDirection: 'row'}}>
                 <Text style = {styles.task_body}>
-                    Time needed: {props.do_day} hours
+                    difficulty: {props.difficulty} %
                 </Text>
             
+            </View>
+
+            <View style = {{flexDirection: 'row'}}>
+                <Text style = {styles.task_body}>
+                    due: {props.due}
+                </Text>
             </View>
 
         </View>
@@ -33,4 +39,4 @@ const scheduleCard = (props) => {
 }
 
 
-export default scheduleCard;
+export default ScheduleCard;
