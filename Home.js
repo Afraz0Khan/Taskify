@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, Button, TouchableOpacity, Image, View, TextInput } from 'react-native';
+import { Text, SafeAreaView, TouchableOpacity, Image, View, ScrollView, Dimensions } from 'react-native';
 import React, { useEffect, useState,  } from 'react';
 import { auth } from './api';
 import { NavigationContainer } from '@react-navigation/native';
@@ -16,6 +16,7 @@ const Home = () => {
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [hasTasks, setHasTasks] = useState(false);
 
 
     const navigation = useNavigation();
@@ -43,16 +44,18 @@ const Home = () => {
         const onAvailable = navigation.addListener('focus', async () => { 
             get_data()
             .then(data => {
-                console.log(data);
-                setData(data);
-                setIsLoading(false);
+                if (data != undefined){
+                    setData(data);
+                    setIsLoading(false);
+                    setHasTasks(true);
+                    }
                 }
             )
         })
     })
 
 
-
+    
     const getTaskCards = () => {
         let task_cards = [];
 
@@ -67,8 +70,9 @@ const Home = () => {
         }
         return task_cards;
     }
+    
 
-    if (isLoading){
+    if (isLoading || !hasTasks) {
 
         return (
             <SafeAreaView>
@@ -81,9 +85,23 @@ const Home = () => {
 
                 </TouchableOpacity>
 
+                <View style = {styles.create_schedule_wrap}>
+                    
+                    <Text style = {{marginBottom: 50, fontSize: 20}}>
+                        Add assignments
+                    </Text>
+
+                    <TouchableOpacity onPress = {handleAddTask}>
+                        <Image source = {require('./assets/plus.png')} 
+                            style = {styles.plus_image}
+                        />
+                    </TouchableOpacity>
+                </View>
+
             </SafeAreaView>
         )
     }
+    
     return (
     <SafeAreaView>
 
@@ -107,18 +125,21 @@ const Home = () => {
                         />
                     </TouchableOpacity>
 
-                    <View>
+                    <View style = {{height: 500, marginTop: 20, borderRadius: 20}}>
 
-                        {getTaskCards()}
-                    
+                        <ScrollView>
+
+                            {getTaskCards()}
+                        
+                        </ScrollView>
+
                     </View>
 
-                </View>
-
-                    
+                </View> 
 
             </SafeAreaView>
     )
+
 }
 
 

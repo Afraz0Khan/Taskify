@@ -26,13 +26,26 @@ const db = getFirestore(app);
 
 
 
-function add_user(collection, email, data) {
+function add_user(email, data) {
     try {
-        setDoc(doc(db, collection, email), data);
+        const data_doc = doc(db, 'users', email)
+        setDoc(data_doc, data);
+
     } catch (error) {
         console.log(error.message);
     }
-    
+}
+
+function ready_user(uid) {
+    try{
+        const data_doc = doc(db, 'user-data', uid)
+        setDoc(data_doc, {
+            tasks: []
+        })
+    }
+    catch(error) {
+        console.log(error.message);
+    }
 }
 
 
@@ -61,7 +74,6 @@ async function get_data() {
         const reqDoc = doc(db, 'user-data', uid);
         const user_doc = await getDoc(reqDoc)
 
-        console.log(user_doc.data().tasks);
         return user_doc.data().tasks;
     }
     catch(error) {
@@ -72,7 +84,7 @@ async function get_data() {
     
 
 
-export { add_user, add_task, get_data };
+export { add_user, add_task, get_data, ready_user };
 export { app };
 export { auth };
 
