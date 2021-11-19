@@ -90,145 +90,135 @@ function order(deadlines){
             
         }
     }
+    var initial_list = ratioList.slice(); //Backing up ratioList also not sorting here to make tracing back easier!
+    
+    //console.log("NESTED_DEADLINES: ",nested_deadlines);
     //console.log(nested_deadlines); //DEBUG
     //var nested_newList = nested_deadlines.sort(function(a, b){return b-a});
+    
+    //Sort based on ratios descending
     var nested_newList = nested_deadlines.sort(function(a,b){
         return a[4] - b[4];
     });
     nested_newList = nested_newList.reverse();
 
-    var initial_list = copy(ratioList); //Backing up ratioList also not sorting here to make tracing back easier!
-    var counter_list = [];
+    var sortedratioList = [];
+    for(var i = 0; i < nested_newList.length; i++){
+        let x = parseFloat(nested_newList[i][4]);
+        sortedratioList.push(x);
+    }
+    //console.log("ratio processed sorted: ", sortedratioList);
 
-    for (const elem in ratioList){
-        var b = 1;
-        while(b==1){
-            var occurrences = ratioList.reduce(function(obj, item) {
-                obj[item] = (obj[item] || 0) + 1;
-                return obj;
-              }, {});
+    console.log("NESTED_DEADLINES new: ",nested_newList);
+    
+    
 
-            if(occurrences[elem] > 1){
-                counter_list.push(elem);
-                counter_list.push(occurrences[elem]);
-                          
+    //console.log("ratio: ",ratioList);
 
-                //nested_counterL = [[element, its count], [element2, its count],...]
-                var nested_counterL = [];
-                var i = 0;
-                var minilist = [];
+    var occurrences = ratioList.reduce(function(obj, item) {
+        obj[item] = (obj[item] || 0) + 1;
+        return obj;
+      }, {});
 
-                while(k < len(counter_list)){
-                    for (let i = k; i <= k+2; i++){
-                        minilist.push(deadlinesList[i]);                    
-                    }
-                    nested_counterL.push(minilist);
-                    k += 2
-                }
-                    
-                //Breaking the loops
-                b = null;
-                ratioList = ratioList.filter(e => e !== elem);
-            }
-            else{
-                //Breaking the loop to pass the initial list
-                break;
-            }
+    //console.log("occurrences: ",occurrences);
+    
+    var duplicates = [];
+    for (const [key, value] of Object.entries(occurrences)){
+        if(value > 1){
+            duplicates.push((key));
+                            
         }
     }
-    processed_list = ratioList;
-    if(initial_list.length == processed_list.length){
+    //console.log("duplicates in progress: ",duplicates);
+
+    var processed_list =[];
+    ratioList.forEach((c) => {
+    if (!processed_list.includes(c)) {
+        processed_list.push(c);
+        }
+    });
+    //console.log("ratio processed: ", processed_list);
+
+    console.log(initial_list.length);
+    console.log(processed_list.length);
+
+    if(initial_list.length == processed_list.length){ //Compare
+        //console.log("EQUALS");
         return(nested_newList);
     }
+    
     else{
-        //This list to fetch ratio values from nested_counterL
-        samevalList = [];
-        for(const numbers in nested_counterL){
-            samevalList.push(numbers[0]);
+        var indexList= [];
+        //console.log("duplicates: ",duplicates);
+        for(var x in duplicates){
+            var index = sortedratioList.findIndex(element => element == duplicates[x]);
+            indexList.push(index);
         }
+       
+        console.log("indexList: ",indexList);
 
-        nested_newList = nested_deadlines.sort(function(a,b){
-            return a[4] - b[4];
-        });
-        nested_newList = nested_newList.reverse();
-
-        var z = 0;
-        indexList= [];
-        
-        for (const i in nested_counterL){
-            for (let [indexx, value] of Object.entries(nested_newList)) {
-                if((value[4] == samevalList[z]) || (value[4] == samevalList[z])){
-                    indexList.push(indexx);
-                }
-            }                  
-            z = z + 1;
-        }
-
-        //Removing every second element from the indexList as the second element is just 1 more of the first element.
-        //indexList = indexList[::2] //OLD PYTHON
-
-        var new_indexList = [];
-        for (const i = 0; i < indexList.length; i = i+2) {
-            new_indexList.push(indexList[i]);
-        };
-        indexList = new_indexList;
-
-        for(const i in indexList){
-            if(nested_newList[i][2] != nested_newList[i+1][2]){
-                var mini_nested_newList = nested_newList.splice(2,2)
+        for (var i=0; i< indexList.length; i++) {
+            var indexpos = indexList[i];
+            //console.log(indexpos);
+            if(nested_newList[indexpos][2] != nested_newList[indexpos+1][2]){
+                //console.log(nested_newList);
+                //console.log("YO: NOT ");
+                var mini_nested_newList = nested_newList.splice(indexpos,2)
                 mini_nested_newList = mini_nested_newList.sort(function(a,b){
                     return a[2] - b[2];
                 });
-                mini_nested_newList = nested_newList.reverse();
-                nested_newList.splice(2,0, mini_nested_newList);
+                mini_nested_newList = mini_nested_newList.reverse();
+                
+                nested_newList.splice(indexpos,0, mini_nested_newList[0], mini_nested_newList[1] );
                 
                 
             }    
-            else if(nested_newList[i][2] == nested_newList[i+1][2]){
-
-                var mini_nested_newList = nested_newList.splice(2,2)
+            if(nested_newList[indexpos][2] == nested_newList[indexpos+1][2]){
+                //console.log("YO: YES ");
+                var mini_nested_newList = nested_newList.splice(indexpos,2)
                 mini_nested_newList = mini_nested_newList.sort(function(a,b){
                     return a[3] - b[3];
                 });
-                mini_nested_newList = nested_newList.reverse();
-                nested_newList.splice(2,0, mini_nested_newList);
+                mini_nested_newList = mini_nested_newList.reverse();
+                nested_newList.splice(indexpos,0, mini_nested_newList[0], mini_nested_newList[1]);
             }
+            
         }
         return nested_newList;        
     }
 }
-//console.log(order(deadlines));
+console.log(order(deadlines));
 
 //Trim output data:
-var new_nestedList = order(deadlines); //Running code here!
+//var new_nestedList = order(deadlines); //Running code here!
 
-for(var i = 0; i < new_nestedList.length; i++) {
-    new_nestedList[i].splice(4, 1);
-    new_nestedList[i].splice(3, 1);
-    new_nestedList[i].splice(2, 1);
-}
+//for(var i = 0; i < new_nestedList.length; i++) {
+//    new_nestedList[i].splice(4, 1);
+//    new_nestedList[i].splice(3, 1);
+//    new_nestedList[i].splice(2, 1);
+//}
     
 
 //The code below displays the initial dictionary but in nested list format and only with the day and the task of that day mentioned:
 
-deadlinesList = [];
-for(const i in deadlines){
-    for(const j in deadlines[i]){
-        deadlinesList.push(i);
-        deadlinesList.push(j);
-        var nested_deadlines = [];
-        var k = 0;
-        var minilist = [];
-        while(k < deadlinesList.length){
-            minilist = [];
-            for (let i = k; i < k+2; i++){
-                minilist.push(deadlinesList[i]);                    
-            }
-            nested_deadlines.push(minilist);
-            k = k+2;
-        }
-    }
-}
-console.log(nested_deadlines,'INITIAL');
-console.log();
-console.log(new_nestedList,'PROCESSED');
+//deadlinesList = [];
+//for(const i in deadlines){
+    //for(const j in deadlines[i]){
+        //deadlinesList.push(i);
+        //deadlinesList.push(j);
+        //var nested_deadlines = [];
+        //var k = 0;
+        //var minilist = [];
+        //while(k < deadlinesList.length){
+            //minilist = [];
+            //for (let i = k; i < k+2; i++){
+                //minilist.push(deadlinesList[i]);                    
+            //}
+            //nested_deadlines.push(minilist);
+            //k = k+2;
+        //}
+    //}
+//}
+//console.log(nested_deadlines,'INITIAL');
+//console.log();
+//console.log(new_nestedList,'PROCESSED');
