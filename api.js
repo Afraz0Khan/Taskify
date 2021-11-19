@@ -32,7 +32,6 @@ function add_user(email, data) {
         setDoc(data_doc, data);
 
     } catch (error) {
-        console.log('mama')
         console.log(error.message);
     }
 }
