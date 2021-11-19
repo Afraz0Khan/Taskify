@@ -67,15 +67,14 @@ const styles = StyleSheet.create({
     signout_button: {
       borderColor: 'blue',
       borderWidth: 1,
-      marginRight: 20,
+      marginLeft: 20,
       padding: 10,
       borderRadius: 10,
       backgroundColor: 'white',
-      width: 75,
+      width: 105,
       alignItems: 'center',
       justifyContent: 'center',
-      alignSelf: 'flex-end',
-      
+      alignSelf: 'flex-start',
     },
 
     plus_image:{
@@ -192,6 +191,24 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       width: 280,
       marginBottom: 3,
+    },
+
+    create_schedule: {
+      borderColor: 'blue',
+      borderWidth: 1,
+      marginLeft: 120,
+      padding: 10,
+      borderRadius: 10,
+      backgroundColor: 'blue',
+      width: 125,
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignSelf: 'flex-end',
+      flexDirection: 'row',
+    },
+
+    schedule_text:{
+      color: 'white',
     }
 
   });

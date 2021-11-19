@@ -22,7 +22,7 @@ const GetAssignmentCard = () => {
     const min_date = new Date();
     const max_date = new Date();
 
-    max_date.setDate(min_date.getDate() + 8);
+    max_date.setDate(min_date.getDate() + 6);
 
     const handleDone = () => {
 

@@ -48,6 +48,18 @@ async function ready_user(uid) {
     }
 }
 
+async function ready_schedule(uid) {
+    try{
+        const data_doc = doc(db, 'user-data', uid)
+        await setDoc(data_doc, {
+            schedule: []
+        })
+    }
+    catch(error) {
+        console.log(error.message);
+    }
+}
+
 
 
 async function add_task(data) {
@@ -81,10 +93,25 @@ async function get_data() {
     }
 }
 
+async function get_schedule_data(uid){
+    try {
+        const user = auth.currentUser;
+        const uid = user.uid;
+
+        const reqDoc = doc(db, 'user-data', uid);
+        const user_doc = await getDoc(reqDoc)
+
+        return user_doc.data().schedule;
+    }
+    catch(error) {
+        console.log(error.message);
+    }
+}
+
     
 
 
-export { add_user, add_task, get_data, ready_user };
+export { add_user, add_task, get_data, ready_user, ready_schedule, get_schedule_data };
 export { app };
 export { auth };
 
