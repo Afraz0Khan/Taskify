@@ -1,26 +1,42 @@
 function convert_to_algo_input(data) {
-    var inputData = {}
+    var finalData = {
+        'Mon':{},
+        'Tue':{},
+        'Wed':{},
+        'Thu':{},
+        'Fri':{},
+        'Sat':{},
+        'Sun':{}
+    };
+
     for (let i = 0; i < data.length; i++) {
-        const element = data[i];
-        const dueDate = new Date(element.due_date*1000);
-        const dueDateString = dueDate.toDateString();
-        const due_day = dueDateString.split(' ')[0];
+        var element = data[i];
 
-        const weightage = element.weightage;
-        const difficulty = element.difficulty;
-        const task_name = element.task_name;
+        var dueDate = new Date(element.due_date*1000);
+        var dueDateString = dueDate.toDateString();
+        var due_day = dueDateString.split(' ')[0];
 
-        const task_info = {
+        var weightage = element.weightage;
+        var difficulty = element.difficulty;
+        var task_name = String(element.task_name);
+        
+
+        var task_info = {
             weightage: weightage,
             difficulty: difficulty,
         }
 
-        due_day[task_name] = task_info;
+        finalData[due_day][task_name] = task_info
 
-        inputData[due_day] = due_day[task_name];
+        // oneTask[task_name] = task_info;
+        // console.log(oneTask)
+        // oneDay[due_day] = oneTask;
+        // console.log(oneDay)
+        // inputData[due_day] = oneDay[task_name];
     }
-    console.log(inputData)
-    return inputData;
+    
+    console.log(finalData)
+    return finalData;
 }
 
 export default convert_to_algo_input;

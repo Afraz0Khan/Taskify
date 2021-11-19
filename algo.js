@@ -1,55 +1,55 @@
-deadlines = {
-    'Monday': {
-        1: {
-            'weightage': 5/100,
-            'difficulty': 50/100
-        },
+// deadlines = {
+//     'Monday': {
+//         1: {
+//             'weightage': 5/100,
+//             'difficulty': 50/100
+//         },
 
-        2: {
-            'weightage': 10/100,
-            'difficulty': 10/100
-        }
-    },
+//         2: {
+//             'weightage': 10/100,
+//             'difficulty': 10/100
+//         }
+//     },
 
-    'Tuesday':{
-        1: {
-            'weightage': 10/100,
-            'difficulty': 100/100
-        },
+//     'Tuesday':{
+//         1: {
+//             'weightage': 10/100,
+//             'difficulty': 100/100
+//         },
 
-        2: {
-            'weightage': 2/100,
-            'difficulty': 60/100
-        }
-    },
+//         2: {
+//             'weightage': 2/100,
+//             'difficulty': 60/100
+//         }
+//     },
 
-    'Wednesday': {
-    },
+//     'Wednesday': {
+//     },
 
-    'Thursday':{
-        1: {
-            'weightage': 7/100,
-            'difficulty': 90/100
-        },
+//     'Thursday':{
+//         1: {
+//             'weightage': 7/100,
+//             'difficulty': 90/100
+//         },
 
-        2: {
-            'weightage': 1/100,
-            'difficulty': 30/100
-        },
+//         2: {
+//             'weightage': 1/100,
+//             'difficulty': 30/100
+//         },
 
-        3: {
-            'weightage': 15/100,
-            'difficulty': 70/100
-        }
-    },
+//         3: {
+//             'weightage': 15/100,
+//             'difficulty': 70/100
+//         }
+//     },
 
-    'Friday': {
-        1: {
-            'weightage': 25/100,
-            'difficulty': 80/100
-        }
-    }
-}
+//     'Friday': {
+//         1: {
+//             'weightage': 25/100,
+//             'difficulty': 80/100
+//         }
+//     }
+// }
 //Code translated to JS by Andrew Tischenko
 
 function copy(mainObject) { //FOUND ON W3: https://www.w3docs.com/snippets/javascript/how-to-clone-a-javascript-object.html
@@ -61,6 +61,7 @@ function copy(mainObject) { //FOUND ON W3: https://www.w3docs.com/snippets/javas
     return objectCopy;
   }
   
+
 function order(deadlines){
     var ratioList = [];
     var deadlinesList = [];
@@ -187,7 +188,9 @@ function order(deadlines){
         return nested_newList;        
     }
 }
-console.log(order(deadlines));
+// console.log(order(deadlines));
+
+export default order;
 
 //Trim output data:
 //var new_nestedList = order(deadlines); //Running code here!

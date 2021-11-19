@@ -10,6 +10,10 @@ import { add_user, ready_user } from './api';
 import { useIsFocused } from '@react-navigation/core';
 import { get_data, ready_schedule, get_schedule_data } from './api';
 import convert_to_algo_input from './imp_functions';
+import order from './algo';
+import scheduleCard from './scheduleCard';
+
+
 
 
 const efficientOrder = () => {
@@ -30,33 +34,45 @@ const efficientOrder = () => {
             get_data()
             .then(data => {
                 const input = convert_to_algo_input(data);
+                const output = order(input);
+                setSmartSchedule(output);
+                setIsLoading(false);
             })
             } 
         )
     })
 
-    if (isLoading) {
-        return (
-            <SafeAreaView>
-                <View style = {styles.container}>
-                    <Text style = {{fontSize: 20}}>
-                        Loading Smart Schedule...
-                    </Text>
-                </View>
+    const getScheduleCards = () => {
+        let scheduleCards = [];
+        for (let i = 0; i < smartSchedule.length; i++) {
+            scheduleCards.push(
+                <scheduleCard 
+                    do_day = {smartSchedule[i][0]}
+                    task_name={smartSchedule[i][1]}
+                />
+            )
+        }
+    }
+
+    if (isLoading){
+
+        return(
+            <SafeAreaView style={styles.container}>
+                <Text style = {{fontSize: 20}}>
+                    Loading smart schedule ...
+                </Text>
             </SafeAreaView>
         )
     }
-
     return (
-        <SafeAreaView>
-            <TouchableOpacity onPress={handleBack}>
-                <Text>
-                    Back
-                </Text>
-            </TouchableOpacity>
+        <SafeAreaView style={styles.container}>
+            {getScheduleCards()}
         </SafeAreaView>
+
     )
+    
+
 }
 
-
 export default efficientOrder;
+
