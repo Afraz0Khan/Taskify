@@ -26,20 +26,20 @@ const db = getFirestore(app);
 
 
 
-function add_user(email, data) {
+async function add_user(email, data) {
     try {
         const data_doc = doc(db, 'users', email)
-        setDoc(data_doc, data);
+        await setDoc(data_doc, data);
 
     } catch (error) {
         console.log(error.message);
     }
 }
 
-function ready_user(uid) {
+async function ready_user(uid) {
     try{
         const data_doc = doc(db, 'user-data', uid)
-        setDoc(data_doc, {
+        await setDoc(data_doc, {
             tasks: []
         })
     }

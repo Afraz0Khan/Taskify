@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, TouchableOpacity, Image, View, ScrollView, Dimensions } from 'react-native';
 import React, { useEffect, useState,  } from 'react';
-import { auth } from './api';
+import { add_user, auth, ready_user } from './api';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
 import add from './api';
@@ -9,6 +9,7 @@ import GetAssignmentCard from './assignmentcard';
 import { add_task, get_data } from './api';
 import TaskCard from './tasks';
 import { Component } from 'react';
+import { useIsFocused } from '@react-navigation/core';
 
 
 
@@ -49,6 +50,10 @@ const Home = () => {
                     setIsLoading(false);
                     setHasTasks(true);
                     }
+                
+                else {
+                    ready_user(auth.currentUser.uid)
+                    }
                 }
             )
         })
@@ -65,6 +70,7 @@ const Home = () => {
                 <TaskCard 
                     task_name={data[index]['task_name']} 
                     task_due_date={data[index]['due_time']['seconds']} 
+                    task_time_needed={data[index]['time_needed']} 
                 />
             )
         }

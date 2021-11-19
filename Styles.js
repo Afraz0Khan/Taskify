@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
       color: '#fff',
       width: 280,
       paddingTop: 10,
-      marginBottom: 25
+      marginBottom: 23
     },
 
     task_body : {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
       color: '#fff',
       flexDirection: 'row',
       width: 280,
-      marginBottom: 8
+      marginBottom: 3,
     }
 
   });

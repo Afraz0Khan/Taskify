@@ -9,6 +9,9 @@ import { useNavigation } from '@react-navigation/core';
 
 const TaskCard = (props) => {
 
+    var date = new Date(props.task_due_date*1000);
+    var date_string = date.toDateString();
+
     return(
         <View style = {styles.task_card}>
 
@@ -17,10 +20,17 @@ const TaskCard = (props) => {
                     {props.task_name}
                 </Text>
             </View>
-            
+
             <View style = {{flexDirection: 'row'}}>
                 <Text style = {styles.task_body}>
-                    {props.task_due_date}
+                    Time needed: {props.task_time_needed} hours
+                </Text>
+            
+            </View>
+
+            <View style = {{flexDirection: 'row'}}>
+                <Text style = {styles.task_body}>
+                    due: {date_string}
                 </Text>
             </View>
 
