@@ -50,7 +50,6 @@ const efficientOrder = () => {
         
         for (let i = 0; i < smartSchedule.length; i++) {
             const element = smartSchedule[i];
-            console.log(element)
 
             scheduleCards.push(
                 <ScheduleCard 

@@ -140,8 +140,6 @@ function order(deadlines){
     });
     //console.log("ratio processed: ", processed_list);
 
-    console.log(initial_list.length);
-    console.log(processed_list.length);
 
     if(initial_list.length == processed_list.length){ //Compare
         //console.log("EQUALS");
@@ -156,7 +154,6 @@ function order(deadlines){
             indexList.push(index);
         }
        
-        console.log("indexList: ",indexList);
 
         for (var i=0; i< indexList.length; i++) {
             var indexpos = indexList[i];
