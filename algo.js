@@ -50,7 +50,7 @@
 //         }
 //     }
 // }
-//Code translated to JS by Andrew Tischenko
+//Code translated to JS by Andrew Tischenko and Akarshan Mishra
 
 function copy(mainObject) { //FOUND ON W3: https://www.w3docs.com/snippets/javascript/how-to-clone-a-javascript-object.html
     let objectCopy = {}; // objectCopy will store a copy of the mainObject

@@ -1,3 +1,6 @@
+'''
+Algo developed by Akarshan Mishra and Andrew Tischenko
+'''
 import copy
 deadlines = {
     'Monday': {
