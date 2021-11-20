@@ -80,7 +80,7 @@ const Login = () => {
     return (
     <SafeAreaView style={styles.container}>
 
-        <Text style = {{paddingBottom: 50, fontSize: 35, fontWeight: 'bold'}}>Taskify</Text>
+        <Image style = {{resizeMode: 'center', width: 200, height: 200, marginBottom: 30}} source = {require('./assets/logo-removebg-preview.png')} />
 
         <Text style = {styles.login_header}>Sign up or Login</Text>
 
