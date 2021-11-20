@@ -51,7 +51,7 @@ async function ready_user(uid) {
 async function ready_schedule(uid) {
     try{
         const data_doc = doc(db, 'user-data', uid)
-        await setDoc(data_doc, {
+        await updateDoc(data_doc, {
             schedule: []
         })
     }

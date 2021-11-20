@@ -1,5 +1,5 @@
 async function convert_to_algo_input(data) {
-    var finalData = {
+    const finalData = {
         'Mon':{},
         'Tue':{},
         'Wed':{},
@@ -10,18 +10,18 @@ async function convert_to_algo_input(data) {
     };
 
     for (let i = 0; i < data.length; i++) {
-        var element = data[i];
+        const element = data[i];
 
-        var dueDate = new Date(element.due_date*1000);
-        var dueDateString = dueDate.toDateString();
-        var due_day = dueDateString.split(' ')[0];
+        const dueDate = new Date(element.due_date['seconds']*1000);
+        const dueDateString = dueDate.toDateString();
+        const due_day = dueDateString.split(' ')[0];
 
-        var weightage = element.weightage;
-        var difficulty = element.difficulty;
-        var task_name = String(element.task_name);
+        const weightage = element.weightage;
+        const difficulty = element.difficulty;
+        const task_name = String(element.task_name);
         
 
-        var task_info = {
+        const task_info = {
             weightage: weightage,
             difficulty: difficulty,
         }

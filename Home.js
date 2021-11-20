@@ -45,15 +45,19 @@ const Home = () => {
         const onAvailable = navigation.addListener('focus', async () => { 
             get_data()
             .then(data => {
-                if (data != undefined){
+                if ((data != undefined)){
                     setData(data);
-                    setIsLoading(false);
                     setHasTasks(true);
+                    setIsLoading(false);
                     }
                 
                 else {
                     ready_user(auth.currentUser.uid)
                     ready_schedule(auth.currentUser.uid)
+                    .then(() => {
+                        setHasTasks(true);
+                        setIsLoading(false)
+                    })
                     }
                 }
             )
@@ -66,19 +70,23 @@ const Home = () => {
 
     
     const getTaskCards = () => {
-        let task_cards = [];
 
-        for (let index = 0; index < data.length; index++) {
+        if (data != undefined){
+            let task_cards = [];
 
-            task_cards.push(
-                <TaskCard 
-                    task_name={data[index]['task_name']} 
-                    task_due_date={data[index]['due_date']['seconds']} 
-                    task_time_needed={data[index]['time_needed']} 
-                />
-            )
+            for (let index = 0; index < data.length; index++) {
+
+                task_cards.push(
+                    <TaskCard 
+                        task_name={data[index]['task_name']} 
+                        task_due_date={data[index]['due_date']['seconds']} 
+                        task_time_needed={data[index]['time_needed']} 
+                    />
+                )
+            }
+            return task_cards;
         }
-        return task_cards;
+        return null
     }
     
 

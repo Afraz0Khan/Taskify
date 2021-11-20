@@ -87,7 +87,12 @@ const efficientOrder = () => {
                 </TouchableOpacity>
             </View>
 
-            <ScrollView>
+            <Text style = {styles.smart_head_text}>
+                Maximum efficiency order
+            </Text>
+
+
+            <ScrollView style = {{marginTop: 10, marginLeft: 25, height: 620}}>
                 {getScheduleCards()}
             </ScrollView>
             

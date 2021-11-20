@@ -80,7 +80,7 @@ const Login = () => {
     return (
     <SafeAreaView style={styles.container}>
 
-        <Text style = {{paddingBottom: 50, fontSize: 35}}>Done</Text>
+        <Text style = {{paddingBottom: 50, fontSize: 35, fontWeight: 'bold'}}>Taskify</Text>
 
         <Text style = {styles.login_header}>Sign up or Login</Text>
 

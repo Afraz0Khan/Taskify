@@ -222,6 +222,15 @@ const styles = StyleSheet.create({
       width: 80,
       alignItems: 'center',
       justifyContent: 'center',
+    },
+
+    smart_head_text:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: 20,
+      alignSelf: 'center',
+      marginBottom: 10,
+      marginTop: 10
     }
 
   });
