@@ -13,23 +13,29 @@ import { useNavigation } from '@react-navigation/core';
 const ScheduleCard = (props) => {
 
     return(
-        <View style = {styles.task_card}>
+        <View style = {styles.schedule_card}>
 
             <View>
-                <Text style = {styles.task_head}>
+                <Text style = {styles.schedule_head}>
                     {props.task_name}
                 </Text>
             </View>
 
             <View style = {{flexDirection: 'row'}}>
-                <Text style = {styles.task_body}>
+                <Text style = {styles.schedule_body}>
+                    weightage: {props.weightage} %
+                </Text>
+            </View>
+
+            <View style = {{flexDirection: 'row'}}>
+                <Text style = {styles.schedule_body}>
                     difficulty: {props.difficulty} %
                 </Text>
             
             </View>
 
             <View style = {{flexDirection: 'row'}}>
-                <Text style = {styles.task_body}>
+                <Text style = {styles.schedule_body}>
                     due: {props.due}
                 </Text>
             </View>

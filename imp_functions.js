@@ -35,7 +35,6 @@ async function convert_to_algo_input(data) {
         // inputData[due_day] = oneDay[task_name];
     }
     
-    console.log(finalData)
     return finalData;
 }
 

@@ -54,6 +54,7 @@ const efficientOrder = () => {
             scheduleCards.push(
                 <ScheduleCard 
                     task_name = {element[1]}
+                    weightage = {element[2]}
                     difficulty = {element[3]}
                     due = {element[0]}
                 />

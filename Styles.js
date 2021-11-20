@@ -231,6 +231,40 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       marginBottom: 10,
       marginTop: 10
+    },
+
+    schedule_card:{
+      width: 320,
+      height: 120,
+      borderColor: 'gray',
+      borderWidth: 1,
+      margin: 10,
+      padding: 10,
+      borderRadius: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#061C39'
+    },
+
+    schedule_head:{
+      fontSize: 21,
+      fontWeight: 'bold',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      width: 280,
+      paddingTop: 10,
+      marginBottom: 12
+    },
+
+    schedule_body:{
+      fontSize: 17,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: '#fff',
+      flexDirection: 'row',
+      width: 280,
+      marginBottom: 2,
     }
 
   });
