@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, Button, TextInput } from 'react-native';
+import { Text, View } from 'react-native';
 import styles from './Styles';
-import { get_data } from './api';
-import { useNavigation } from '@react-navigation/core';
+
 
 
 

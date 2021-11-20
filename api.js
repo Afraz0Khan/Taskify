@@ -1,4 +1,4 @@
-import { collection, addDoc, setDoc, doc, getDoc, updateDoc, arrayUnion } from '@firebase/firestore';
+import { setDoc, doc, getDoc, updateDoc, arrayUnion } from '@firebase/firestore';
 import { getFirestore } from "firebase/firestore";
 
 // Import the functions you need from the SDKs you need

@@ -1,15 +1,11 @@
 import { Text, SafeAreaView, TouchableOpacity, Image, View, ScrollView, Dimensions } from 'react-native';
 import React, { useEffect, useState,  } from 'react';
-import { add_user, auth, ready_user } from './api';
-import { NavigationContainer } from '@react-navigation/native';
+import { auth, ready_user } from './api';
 import { useNavigation } from '@react-navigation/core';
-import add from './api';
 import styles from './Styles';
-import GetAssignmentCard from './assignmentcard';
-import { add_task, get_data, ready_schedule } from './api';
+import { get_data, ready_schedule } from './api';
 import TaskCard from './tasks';
-import { Component } from 'react';
-import { useIsFocused } from '@react-navigation/core';
+
 
 
 
