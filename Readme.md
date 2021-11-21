@@ -8,4 +8,4 @@ Taskify is an app that helps you in being efficient in tasks/assignments that yo
 Git clone the repository and run `npm install` to download all the required dependencies.
 
 ## Usage
-Do `npm run` to run the app. Make sure you have an emulator.
+Do `npm start` to run the app. Make sure you have an emulator.
